@@ -1,14 +1,13 @@
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 
 public class Person {
     private String firstname;
     private String lastname;
-    private GregorianCalendar birthday;
+    private LocalDate birthday;
     private Address address;
 
 
-    public Person(String pFirst, String pLast, String pStreet, int pZip, String pCity, GregorianCalendar pBirthday) throws IllegalArgumentException {
+    public Person(String pFirst, String pLast, String pStreet, int pZip, String pCity, LocalDate pBirthday) throws IllegalArgumentException {
         if (pFirst == null || pFirst.isEmpty()) {
             throw new IllegalArgumentException("Firstname must not be empty");
         }
@@ -33,12 +32,12 @@ public class Person {
     }
 
     public int getAge() {
-        Calendar current = Calendar.getInstance(); //get current Date
+        LocalDate current = LocalDate.now();
 
-        if (current.get(Calendar.DAY_OF_YEAR) < birthday.get(Calendar.DAY_OF_YEAR)) { //Birthday is after this date
-            return current.get(Calendar.YEAR) - birthday.get(Calendar.YEAR) - 1;
+        if (current.getDayOfYear() < birthday.getDayOfYear()) { //Birthday is after this date
+            return current.getYear() - birthday.getYear() - 1;
         } else { //Birthday was before this date (or is happening right now, Happy birthday!)
-            return current.get(Calendar.YEAR) - birthday.get(Calendar.YEAR);
+            return current.getYear() - birthday.getYear();
         }
 
     }
@@ -86,7 +85,7 @@ public class Person {
         return lastname;
     }
 
-    public GregorianCalendar getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
