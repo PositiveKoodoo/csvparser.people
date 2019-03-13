@@ -76,4 +76,7 @@ public class PersonTest {
 
     //TODO getAge testen... aber wie?
 
+    /*
+    Idee: Geburtstag der Testperson in Abhängigkeit zum aktuellen Datum erstellen. (also z.B. aktuelles Datum -5 Tage)
+     */
 }
