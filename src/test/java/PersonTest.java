@@ -22,32 +22,32 @@ public class PersonTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWrongFirstname(){
-        Person p = new Person("","Musterfrau","Am Hauptbahnhof 1", 12345, "Köln", LocalDate.of(1964,8,12));
+        new Person("","Musterfrau","Am Hauptbahnhof 1", 12345, "Köln", LocalDate.of(1964,8,12));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWrongLastname(){
-        Person p = new Person("Erika",null,"Am Hauptbahnhof 1", 12345, "Köln", LocalDate.of(1964,8,12));
+        new Person("Erika",null,"Am Hauptbahnhof 1", 12345, "Köln", LocalDate.of(1964,8,12));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWrongAdress(){
-        Person p = new Person("Erika","Musterfrau",null, 12345, "Köln", LocalDate.of(1964,8,12));
+        new Person("Erika","Musterfrau",null, 12345, "Köln", LocalDate.of(1964,8,12));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWrongBirthday(){
-        Person p = new Person("Erika","Musterfrau","Am Hauptbahnhof 1", 12345, "Köln", null);
+        new Person("Erika","Musterfrau","Am Hauptbahnhof 1", 12345, "Köln", null);
     }
 
     @Test
     public void constructorExtremeName(){
-        Person p = new Person("a","Musterfrau","Am Hauptbahnhof 1", 12345, "Köln", LocalDate.of(1964,8,12));
+        new Person("a","Musterfrau","Am Hauptbahnhof 1", 12345, "Köln", LocalDate.of(1964,8,12));
     }
 
     @Test
     public void constructorExtremeZip(){
-        Person p = new Person("Erika","Musterfrau","Am Hauptbahnhof 1", Integer.MAX_VALUE, "Köln", LocalDate.of(1964,8,12));
+        new Person("Erika","Musterfrau","Am Hauptbahnhof 1", Integer.MAX_VALUE, "Köln", LocalDate.of(1964,8,12));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -85,19 +85,17 @@ public class PersonTest {
 
         //Birthday today
         Person p = new Person("Erika", "Musterfrau", "Am Hauptbahnhof 1", 12345, "Köln", sixtyyears);
-        assertNotNull(p.getAge());
+        assertNotEquals(p.getAge(),0);
         assertEquals(p.getAge(), 60);
 
         //Birthday 5 days ago
         p = new Person("Erika", "Musterfrau", "Am Hauptbahnhof 1", 12345, "Köln", sixtyyears.minusDays(5));
-        assertNotNull(p.getAge());
+        assertNotEquals(p.getAge(), 0);
         assertEquals(p.getAge(),60);
 
         //Birthday in 5 days
         p = new Person("Erika", "Musterfrau", "Am Hauptbahnhof 1", 12345, "Köln", sixtyyears.plusDays(5));
-        assertNotNull(p.getAge());
+        assertNotEquals(p.getAge(), 0);
         assertEquals(p.getAge(), 59);
-
-
     }
 }
