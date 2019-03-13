@@ -1,7 +1,6 @@
 import org.junit.Test;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 
 import static org.junit.Assert.*;
 
@@ -10,7 +9,7 @@ public class PersonTest {
 
     @Test
     public void constructorNormalValues(){
-        Person p = new Person("Erika","Musterfrau","Am Hauptbahnhof 1", 12345, "Köln", new GregorianCalendar(1964, Calendar.AUGUST, 12));
+        Person p = new Person("Erika","Musterfrau","Am Hauptbahnhof 1", 12345, "Köln", LocalDate.of(1964,8,12));
 
         assertNotNull(p);
 
@@ -23,17 +22,17 @@ public class PersonTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWrongFirstname(){
-        Person p = new Person("","Musterfrau","Am Hauptbahnhof 1", 12345, "Köln", new GregorianCalendar(1964,Calendar.AUGUST, 12));
+        Person p = new Person("","Musterfrau","Am Hauptbahnhof 1", 12345, "Köln", LocalDate.of(1964,8,12));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWrongLastname(){
-        Person p = new Person("Erika",null,"Am Hauptbahnhof 1", 12345, "Köln", new GregorianCalendar(1964,Calendar.AUGUST, 12));
+        Person p = new Person("Erika",null,"Am Hauptbahnhof 1", 12345, "Köln", LocalDate.of(1964,8,12));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWrongAdress(){
-        Person p = new Person("Erika","Musterfrau",null, 12345, "Köln", new GregorianCalendar(1964,Calendar.AUGUST, 12));
+        Person p = new Person("Erika","Musterfrau",null, 12345, "Köln", LocalDate.of(1964,8,12));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -43,40 +42,62 @@ public class PersonTest {
 
     @Test
     public void constructorExtremeName(){
-        Person p = new Person("a","Musterfrau","Am Hauptbahnhof 1", 12345, "Köln", new GregorianCalendar(1964,Calendar.AUGUST, 12));
+        Person p = new Person("a","Musterfrau","Am Hauptbahnhof 1", 12345, "Köln", LocalDate.of(1964,8,12));
     }
 
     @Test
     public void constructorExtremeZip(){
-        Person p = new Person("Erika","Musterfrau","Am Hauptbahnhof 1", Integer.MAX_VALUE, "Köln", new GregorianCalendar(1964,Calendar.AUGUST, 12));
+        Person p = new Person("Erika","Musterfrau","Am Hauptbahnhof 1", Integer.MAX_VALUE, "Köln", LocalDate.of(1964,8,12));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void setMissingAddress(){
-        Person p = new Person("Erika","Musterfrau","Am Hauptbahnhof 1", 12345, "Köln", new GregorianCalendar(1964,Calendar.AUGUST, 12));
+        Person p = new Person("Erika","Musterfrau","Am Hauptbahnhof 1", 12345, "Köln", LocalDate.of(1964,8,12));
 
         p.setAddress(null);
     }
 
     @Test
     public void testingEquals(){
-        Person first = new Person("Erika","Musterfrau","Am Hauptbahnhof 1", 12345, "Köln", new GregorianCalendar(1964,Calendar.AUGUST, 12));
+        Person first = new Person("Erika","Musterfrau","Am Hauptbahnhof 1", 12345, "Köln", LocalDate.of(1964,8,12));
 
         assertEquals(first, first);
         assertNotEquals(first, null);
 
-        Person second = new Person("Max","Musterfrau","Am Hauptbahnhof 1", 12345, "Köln", new GregorianCalendar(1964,Calendar.AUGUST, 12));
+        Person second = new Person("Max","Musterfrau","Am Hauptbahnhof 1", 12345, "Köln", LocalDate.of(1964,8,12));
         assertNotEquals(first, second);
         assertNotEquals(second, first);
 
-        Person third = new Person("Erika","Musterfrau","Am Hauptbahnhof 1", 12345, "Köln", new GregorianCalendar(1964,Calendar.AUGUST, 12));
+        Person third = new Person("Erika","Musterfrau","Am Hauptbahnhof 1", 12345, "Köln", LocalDate.of(1964,8,12));
         assertEquals(third, first);
         assertEquals(first,third);
     }
 
-    //TODO getAge testen... aber wie?
 
     /*
     Idee: Geburtstag der Testperson in Abhängigkeit zum aktuellen Datum erstellen. (also z.B. aktuelles Datum -5 Tage)
      */
+    @Test
+    public void testingAge(){
+        LocalDate now = LocalDate.now();
+
+        LocalDate sixtyyears = now.minusYears(60);
+
+        //Birthday today
+        Person p = new Person("Erika", "Musterfrau", "Am Hauptbahnhof 1", 12345, "Köln", sixtyyears);
+        assertNotNull(p.getAge());
+        assertEquals(p.getAge(), 60);
+
+        //Birthday 5 days ago
+        p = new Person("Erika", "Musterfrau", "Am Hauptbahnhof 1", 12345, "Köln", sixtyyears.minusDays(5));
+        assertNotNull(p.getAge());
+        assertEquals(p.getAge(),60);
+
+        //Birthday in 5 days
+        p = new Person("Erika", "Musterfrau", "Am Hauptbahnhof 1", 12345, "Köln", sixtyyears.plusDays(5));
+        assertNotNull(p.getAge());
+        assertEquals(p.getAge(), 59);
+
+
+    }
 }
