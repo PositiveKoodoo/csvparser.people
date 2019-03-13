@@ -41,7 +41,11 @@ public class Address {
         return street +"\n"+zipcode+" "+city;
     }
 
-    //TODO hashcode-Methode?
+    @Override
+    public int hashCode() {
+        //Stichwort Hashkollision?
+        return this.toString().hashCode();
+    }
 
     public String getStreet() {
         return street;

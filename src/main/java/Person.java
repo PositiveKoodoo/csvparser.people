@@ -58,6 +58,12 @@ public class Person {
     }
 
     @Override
+    public int hashCode() {
+        //Stichwort Hash-Kollision???
+        return this.toString().hashCode();
+    }
+
+    @Override
     public String toString() {
         return "Person{" +
                 "Firstname='" + firstname + '\'' +
@@ -75,7 +81,6 @@ public class Person {
         }
     }
 
-    //TODO hashcode-Methode?
 
     public String getFirstname() {
         return firstname;
