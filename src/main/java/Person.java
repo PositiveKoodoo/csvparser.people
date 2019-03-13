@@ -9,26 +9,21 @@ public class Person {
 
     public Person(String pFirst, String pLast, String pStreet, int pZip, String pCity, LocalDate pBirthday) throws IllegalArgumentException {
         if (pFirst == null || pFirst.isEmpty()) {
-            throw new IllegalArgumentException("Firstname must not be empty");
+            throw new IllegalArgumentException("first name must not be empty");
         }
         this.firstname = pFirst;
         if (pLast == null || pLast.isEmpty()) {
-            throw new IllegalArgumentException("Lastname must not be empty");
+            throw new IllegalArgumentException("last name must not be empty");
         }
         this.lastname = pLast;
 
-        try {
-            this.address = new Address(pStreet, pZip, pCity);
-        } catch (IllegalArgumentException e) {
-            throw e;
-        }
+        this.address = new Address(pStreet, pZip, pCity);
 
         if (pBirthday == null) {
-            throw new IllegalArgumentException("Birthday must not be empty");
+            throw new IllegalArgumentException("birthday must not be empty");
         }
 
         this.birthday = pBirthday;
-
     }
 
     public int getAge() {
