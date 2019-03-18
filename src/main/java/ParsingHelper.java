@@ -13,6 +13,7 @@ public class ParsingHelper {
         CSVReader reader = null;
         LinkedList<Person> people = new LinkedList<>();
 
+        //TODO: nicht alles in einem riesigen try/catch-Block machen.
         try {
             reader = new CSVReader(new FileReader(".//src/main/resources/one.csv"));
             String [] nextLine;
