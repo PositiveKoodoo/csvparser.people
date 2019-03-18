@@ -1,9 +1,7 @@
 public class Address {
 
-    // https://www.mjt.me.uk/posts/falsehoods-programmers-believe-about-addresses/
-
     private String street;
-    private int zipcode;
+    private int zipCode;
     private String city;
 
     public Address(String pStreet, int pzip, String pCity) throws IllegalArgumentException{
@@ -18,7 +16,7 @@ public class Address {
         }
 
         this.street = pStreet;
-        this.zipcode = pzip;
+        this.zipCode = pzip;
         this.city = pCity;
 
     }
@@ -33,12 +31,12 @@ public class Address {
         }
         Address a = (Address) obj;
         //Two Addresses are the same, when the street, the zip code and the city is the same.
-        return (a.getStreet().equals(street) && a.getZipcode() == zipcode && a.getCity().equals(city));
+        return (a.getStreet().equals(street) && a.getZipCode() == zipCode && a.getCity().equals(city));
     }
 
     @Override
     public String toString() {
-        return street +"\n"+zipcode+" "+city;
+        return street +"\n"+ zipCode +" "+city;
     }
 
     @Override
@@ -51,8 +49,8 @@ public class Address {
         return street;
     }
 
-    public int getZipcode() {
-        return zipcode;
+    public int getZipCode() {
+        return zipCode;
     }
 
     public String getCity() {

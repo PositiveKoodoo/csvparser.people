@@ -13,7 +13,7 @@ public class AddressTest {
         //testing if parameters are saved
         assertEquals("Street name was not saved", address.getStreet(), "Am Hauptbahnhof 1");
         assertEquals("City was not saved", address.getCity(), "Hauptstadt");
-        assertEquals("Zip code was not saved", address.getZipcode(),3975);
+        assertEquals("Zip code was not saved", address.getZipCode(),3975);
 
     }
 
@@ -38,7 +38,7 @@ public class AddressTest {
 
         assertNotNull(address);
 
-        assertEquals("Zip Code should be Integer.MAX_VALUE", address.getZipcode(), Integer.MAX_VALUE);
+        assertEquals("Zip Code should be Integer.MAX_VALUE", address.getZipCode(), Integer.MAX_VALUE);
     }
 
     @Test
