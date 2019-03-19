@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.Comparator;
 
 public class Person {
     private String firstname;
@@ -66,6 +67,22 @@ public class Person {
                 ", Birthday=" + birthday +
                 ", Address=" + address.toString() +
                 '}';
+    }
+
+    public Comparator<Person> ageComparator() {
+        return (o1, o2) -> o1.getAge() - o2.getAge();
+    }
+
+    public Comparator<Person> firstNameComparator() {
+        return (o1, o2) -> o1.getFirstname().compareTo(o2.getFirstname());
+    }
+
+    public Comparator<Person> lastNameComparator() {
+        return (o1, o2) -> o1.getLastname().compareTo(o2.getLastname());
+    }
+
+    public boolean livingAtTheSameAddress(Person p) {
+        return this.getAddress().equals(p.getAddress());
     }
 
     public void setAddress(Address pAddress) throws IllegalArgumentException {
