@@ -24,7 +24,14 @@ public class ParsingHelper {
 
     }
 
-    public static LinkedList<Person> parsing(FileReader file) {
+    /**
+     *
+     *
+     * @param file
+     * @return LinkedList full of Person Objects
+     * @throws IllegalArgumentException
+     */
+    public static LinkedList<Person> parsing(FileReader file) throws IllegalArgumentException{
         CSVReader reader = null;
         LinkedList<Person> people = new LinkedList<>();
 

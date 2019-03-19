@@ -7,7 +7,17 @@ public class Person {
     private LocalDate birthday;
     private Address address;
 
-
+    /**
+     * the constructor for class Person
+     *
+     * @param pFirst first name parameter
+     * @param pLast last name parameter
+     * @param pStreet street name parameter
+     * @param pZip zip code parameter
+     * @param pCity city name parameter
+     * @param pBirthday date of birth parameter
+     * @throws IllegalArgumentException if first name, last name or date of birth is empty
+     */
     public Person(String pFirst, String pLast, String pStreet, int pZip, String pCity, LocalDate pBirthday) throws IllegalArgumentException {
         if (pFirst == null || pFirst.isEmpty()) {
             throw new IllegalArgumentException("first name must not be empty");
@@ -27,6 +37,10 @@ public class Person {
         this.birthday = pBirthday;
     }
 
+    /**
+     *
+     * @return Years of age.
+     */
     public int getAge() {
         LocalDate current = LocalDate.now();
 
@@ -38,6 +52,12 @@ public class Person {
 
     }
 
+    /**
+     * Checks if this object is equal to the given one
+     *
+     * @param obj the object that is to be compared
+     * @return true or false
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null || this.getClass() != obj.getClass()) {
@@ -53,12 +73,22 @@ public class Person {
 
     }
 
+    /**
+     * Returns a hashcode value for the object
+     *
+     * @return a hashcode value
+     */
     @Override
     public int hashCode() {
         //Stichwort Hash-Kollision???
         return this.toString().hashCode();
     }
 
+    /**
+     * Outputs all data to a person object
+     *
+     * @return String
+     */
     @Override
     public String toString() {
         return "Person{" +
@@ -69,23 +99,50 @@ public class Person {
                 '}';
     }
 
+    /**
+     * Static method to create a Comparator object, which simplifies comparing the age of two Persons
+     *
+     * @return Comparator for the age variable
+     */
     public static Comparator<Person> ageComparator() {
         return (o1, o2) -> o1.getAge() - o2.getAge();
     }
 
+    /**
+     * Static method to create a Comparator object, which simplifies comparing the first name of two Persons
+     *
+     * @return Comparator for the first name variable
+     */
     public static Comparator<Person> firstNameComparator() {
         return (o1, o2) -> o1.getFirstname().compareTo(o2.getFirstname());
     }
 
+    /**
+     * Static method to create a Comparator object, which simplifies comparing the last name of two Persons
+     *
+     * @return Comparator for the last name variable
+     */
     public static Comparator<Person> lastNameComparator() {
         return (o1, o2) -> o1.getLastname().compareTo(o2.getLastname());
     }
 
+    /**
+     * Checks if two person objects have equal address objects
+     *
+     * @param p person object
+     * @return true or false
+     */
     public boolean livingAtTheSameAddress(Person p) {
         return this.getAddress().equals(p.getAddress());
     }
 
-    public void setAddress(Address pAddress) throws IllegalArgumentException {
+    /**
+     * Changes Address to new one
+     *
+     * @param pAddress an address object
+     * @throws IllegalArgumentException in case pAddress is null
+     */
+    public void setAddress(Address pAddress) throws IllegalArgumentException { //maybe NullPointerException?
         if (pAddress == null) {
             throw new IllegalArgumentException("Address must not be empty");
         } else {
