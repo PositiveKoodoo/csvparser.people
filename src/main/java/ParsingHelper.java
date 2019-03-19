@@ -1,5 +1,6 @@
 import com.opencsv.CSVReader;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -10,15 +11,33 @@ public class ParsingHelper {
 
 
     public static void main(String[] args) {
+        LinkedList<Person> people = new LinkedList<>();
+        try {
+            people = parsing(new FileReader(".//src/main/resources/one.csv"));
+        } catch (FileNotFoundException e) {
+            System.out.println("File was not found.");
+        }
+
+        for (Person p : people) {
+            System.out.println(p.toString());
+        }
+
+    }
+
+    public static LinkedList<Person> parsing(FileReader file) {
         CSVReader reader = null;
         LinkedList<Person> people = new LinkedList<>();
 
-        //TODO: nicht alles in einem riesigen try/catch-Block machen.
         try {
-            reader = new CSVReader(new FileReader(".//src/main/resources/one.csv"));
-            String [] nextLine;
+            reader = new CSVReader(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-            while ((nextLine = reader.readNext()) != null){
+        String[] nextLine;
+
+        try {
+            while ((nextLine = reader.readNext()) != null) {
                 String lastName = nextLine[0];
                 /*Here I wanted to do some regex-matching to check if the input consists of only letters, no numbers
                  & no special characters but after reading
@@ -36,7 +55,7 @@ public class ParsingHelper {
                 int zipNumber = 0;
                 try {
                     zipNumber = Integer.parseInt(zip);
-                } catch (NumberFormatException n){
+                } catch (NumberFormatException n) {
                     System.out.println("zip-code must be a number");
                 }
 
@@ -44,9 +63,9 @@ public class ParsingHelper {
 
                 String birthday = nextLine[5];
                 String day, month, year;
-                if(Pattern.matches("\\d{2}\\.\\d{2}\\.\\d{4}",birthday)){
-                    day = birthday.substring(0,2);
-                    month = birthday.substring(3,5);
+                if (Pattern.matches("\\d{2}\\.\\d{2}\\.\\d{4}", birthday)) {
+                    day = birthday.substring(0, 2);
+                    month = birthday.substring(3, 5);
                     year = birthday.substring(6);
                 } else {
                     throw new IllegalArgumentException("Date of birth must be in a DD.MM.YYYY format");
@@ -54,40 +73,29 @@ public class ParsingHelper {
                 int dayNumbers = 0;
                 int monthNumbers = 0;
                 int yearNumbers = 0;
-                try{
+                try {
                     dayNumbers = Integer.parseInt(day);
                     monthNumbers = Integer.parseInt(month);
                     yearNumbers = Integer.parseInt(year);
-                } catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                     System.out.println("Date of may only consist of digits and .");
                 }
-                LocalDate dateOfBirth = LocalDate.of(yearNumbers,monthNumbers,dayNumbers);
+                LocalDate dateOfBirth = LocalDate.of(yearNumbers, monthNumbers, dayNumbers);
 
-                Person p = new Person(firstName,lastName,street,zipNumber,city,dateOfBirth);
+                Person p = new Person(firstName, lastName, street, zipNumber, city, dateOfBirth);
                 people.add(p);
             }
-
         } catch (IOException e){
             e.printStackTrace();
         }
 
-        for(Person person : people){
-            System.out.println(person.toString());
+        try {
+            reader.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        //finally {
-            try {
-                if(reader !=null) {
-                    /*
-                    Don't think the if is really necessary, since the program should have stopped with an exception, if
-                    creating the reader was not possible, but intelliJ would not stop warning so here we go.
-                     */
-                    reader.close();
-                }
-            } catch (Exception e){
-                e.printStackTrace();
-            }
-        //}
-
+        return people;
     }
 }
