@@ -165,7 +165,7 @@ public class PersonTest {
         Person a = new Person("Alice","Müller", "Hauptstraße", 12345,"Dülmen" ,LocalDate.of(1963,6,2));
         Person b = new Person("Alice", "Müller", "Am See" , 12345, "Dülmen", LocalDate.of(1958,6,2));
 
-        Comparator<Person> comp = Person.firstNameComparator();
+        Comparator<Person> comp = Person.lastNameComparator();
         assertEquals(0, comp.compare(a, b));
         assertEquals(0, comp.compare(b, a));
         assertEquals(0, comp.compare(a, a));
@@ -176,7 +176,7 @@ public class PersonTest {
         Person a = new Person("Alice","Müller", "Hauptstraße", 12345,"Dülmen" ,LocalDate.of(1963,6,2));
         Person b = new Person("Bob", "Zernial", "Am See" , 12345, "Dülmen", LocalDate.of(1958,6,2));
 
-        Comparator<Person> comp = Person.firstNameComparator();
+        Comparator<Person> comp = Person.lastNameComparator();
         assertTrue(comp.compare(b,a) > 0);
         assertFalse(comp.compare(a, b) > 0);
     }
@@ -186,7 +186,7 @@ public class PersonTest {
         Person a = new Person("Alice","Müller", "Hauptstraße", 12345,"Dülmen" ,LocalDate.of(1963,6,2));
         Person b = new Person("Bob", "Zernial", "Am See" , 12345, "Dülmen", LocalDate.of(1958,6,2));
 
-        Comparator<Person> comp = Person.firstNameComparator();
+        Comparator<Person> comp = Person.lastNameComparator();
         assertTrue(comp.compare(a, b) < 0);
         assertFalse(comp.compare(b, a) < 0);
     }
