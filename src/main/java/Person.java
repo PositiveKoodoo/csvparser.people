@@ -69,15 +69,15 @@ public class Person {
                 '}';
     }
 
-    public Comparator<Person> ageComparator() {
+    public static Comparator<Person> ageComparator() {
         return (o1, o2) -> o1.getAge() - o2.getAge();
     }
 
-    public Comparator<Person> firstNameComparator() {
+    public static Comparator<Person> firstNameComparator() {
         return (o1, o2) -> o1.getFirstname().compareTo(o2.getFirstname());
     }
 
-    public Comparator<Person> lastNameComparator() {
+    public static Comparator<Person> lastNameComparator() {
         return (o1, o2) -> o1.getLastname().compareTo(o2.getLastname());
     }
 
