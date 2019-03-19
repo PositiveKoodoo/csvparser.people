@@ -44,19 +44,31 @@ public class ParsingHelper {
                  https://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/
                  I decided against it.
                  Would have probably been something like this: "[A-Z][a-z]*" */
+                if(lastName.isEmpty()){
+                    throw new IllegalArgumentException("Last name must not be empty.");
+                }
+
                 String firstName = nextLine[1];
                 //no regex-matching. Reasons see above.
+                if(firstName.isEmpty()){
+                    throw new IllegalArgumentException("First name must not be empty.");
+                }
 
                 String street = nextLine[2];
                 //no regex-matching. Really don't wanna touch that.
                 // https://www.mjt.me.uk/posts/falsehoods-programmers-believe-about-addresses/
+                if(street.isEmpty()){
+                    throw new IllegalArgumentException("Street must not be empty");
+                }
+
 
                 String zip = nextLine[3];
-                int zipNumber = 0;
+                int zipNumber;
                 try {
                     zipNumber = Integer.parseInt(zip);
                 } catch (NumberFormatException n) {
-                    System.out.println("zip-code must be a number");
+                    //System.out.println("zip-code must be a number");
+                    throw new NumberFormatException("Zip-code must be a number.");
                 }
 
                 String city = nextLine[4];
