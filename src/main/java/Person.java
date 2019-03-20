@@ -1,10 +1,13 @@
 import java.time.LocalDate;
 import java.util.Comparator;
 
+/**
+ * Represents a Person with a first name, last name, date of birth and an address
+ */
 public class Person {
     private String firstname;
     private String lastname;
-    private LocalDate birthday;
+    private LocalDate dateOfBirth;
     private Address address;
 
     /**
@@ -34,7 +37,7 @@ public class Person {
             throw new IllegalArgumentException("birthday must not be empty");
         }
 
-        this.birthday = pBirthday;
+        this.dateOfBirth = pBirthday;
     }
 
     /**
@@ -44,10 +47,10 @@ public class Person {
     public int getAge() {
         LocalDate current = LocalDate.now();
 
-        if (current.getDayOfYear() < birthday.getDayOfYear()) { //Birthday is after this date
-            return current.getYear() - birthday.getYear() - 1;
+        if (current.getDayOfYear() < dateOfBirth.getDayOfYear()) { //Birthday is after this date
+            return current.getYear() - dateOfBirth.getYear() - 1;
         } else { //Birthday was before this date (or is happening right now, Happy birthday!)
-            return current.getYear() - birthday.getYear();
+            return current.getYear() - dateOfBirth.getYear();
         }
 
     }
@@ -69,7 +72,7 @@ public class Person {
         Person p = (Person) obj;
 
         /* Two persons are the same, when they have the same name, birthday and address. */
-        return firstname.equals(p.getFirstname()) && lastname.equals(p.getLastname()) && birthday.equals(p.getBirthday()) && address.equals(p.getAddress());
+        return firstname.equals(p.getFirstname()) && lastname.equals(p.getLastname()) && dateOfBirth.equals(p.getDateOfBirth()) && address.equals(p.getAddress());
 
     }
 
@@ -92,10 +95,10 @@ public class Person {
     @Override
     public String toString() {
         return "Person{" +
-                "Firstname='" + firstname + '\'' +
-                ", Lastname='" + lastname + '\'' +
-                ", Birthday=" + birthday +
-                ", Address=" + address.toString() +
+                "first name='" + firstname + '\'' +
+                ", last name='" + lastname + '\'' +
+                ", date of birth=" + dateOfBirth +
+                ", address=" + address.toString() +
                 '}';
     }
 
@@ -159,8 +162,8 @@ public class Person {
         return lastname;
     }
 
-    public LocalDate getBirthday() {
-        return birthday;
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
     }
 
     public Address getAddress() {

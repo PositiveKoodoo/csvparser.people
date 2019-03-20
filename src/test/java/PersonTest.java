@@ -18,7 +18,7 @@ public class PersonTest {
         assertEquals("Erika", p.getFirstname());
         assertEquals("Musterfrau", p.getLastname());
         assertNotNull(p.getAddress());
-        assertNotNull(p.getBirthday());
+        assertNotNull(p.getDateOfBirth());
     }
 
     @Test(expected = IllegalArgumentException.class)
