@@ -73,14 +73,29 @@ public class Address {
         return this.toString().hashCode();
     }
 
+    /**
+     * returns the street part of the address
+     *
+     * @return street name
+     */
     public String getStreet() {
         return street;
     }
 
+    /**
+     * returns the zip code of the address
+     *
+     * @return zip code
+     */
     public int getZipCode() {
         return zipCode;
     }
 
+    /**
+     * returns the city of the address
+     *
+     * @return city
+     */
     public String getCity() {
         return city;
     }

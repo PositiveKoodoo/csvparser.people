@@ -154,18 +154,38 @@ public class Person {
     }
 
 
+    /**
+     * returns the first name of the person
+     *
+     * @return first name
+     */
     public String getFirstname() {
         return firstname;
     }
 
+    /**
+     * returns the last name of the person
+     *
+     * @return last name
+     */
     public String getLastname() {
         return lastname;
     }
 
+    /**
+     * returns the date of birth of the person
+     *
+     * @return date of birth
+     */
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
+    /**
+     * returns the address of the person
+     *
+     * @return address
+     */
     public Address getAddress() {
         return address;
     }
