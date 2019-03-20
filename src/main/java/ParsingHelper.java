@@ -7,6 +7,10 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.regex.Pattern;
 
+/**
+ * A class for parsing .csv files which content has the following format:
+ * last name, first name, street, zip code, city, date of birth
+ */
 public class ParsingHelper {
 
 
@@ -25,11 +29,11 @@ public class ParsingHelper {
     }
 
     /**
+     * Reads a .csv file and transforms it into a LinkedList full of Person objects
      *
-     *
-     * @param file
+     * @param file Filereader object to an .csv file
      * @return LinkedList full of Person Objects
-     * @throws IllegalArgumentException
+     * @throws IllegalArgumentException if the .csv file does not have the right format or cells are empty
      */
     public static LinkedList<Person> parsing(FileReader file) throws IllegalArgumentException{
         CSVReader reader = null;

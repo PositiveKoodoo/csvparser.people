@@ -1,4 +1,6 @@
-
+/**
+ * Represents an address with a street, zip code and a city
+ */
 public class Address {
 
     private String street;
